@@ -1,4 +1,4 @@
-import "galaxy.proto";
+import "galaxy.proto"
 package baidu.galaxy;
 
 option cc_generic_services = true;

@@ -186,7 +186,7 @@ service ResMan {
     rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
     rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
     rpc ShowUser(ShowUserRequest) returns (ShowUserResponse);
-    rpc GrantUser(GrantUserRequest) returns (GrantUserResponse);
+    rpc GrantUser(GrantUserReuquest) returns (GrantUserResponse);
     rpc AssignQuota(AssignQuotaRequest) returns (AssignQuotaResponse);
 
 }

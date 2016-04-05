@@ -3,10 +3,10 @@ package baidu.galaxy;
 
 option cc_generic_services = true;
 
-message AssignTaskRequest {
+message KeepAliveRequest {
 
 }
-message AssignTaskResponse {
+message KeepAliveResponse {
 
 }
 message ListTasksRequest {
@@ -42,7 +42,7 @@ message ExecuteCmdResponse {
 
 service AppMaster {
     //for app-worker: report & task assignment
-    rpc AssignTask(AssignTaskRequest) returns (AssignTaskResponse);
+    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse);
 
     //for user
     rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
