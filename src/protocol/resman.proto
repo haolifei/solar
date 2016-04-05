@@ -1,0 +1,48 @@
+import "galaxy.proto"
+package baidu.galaxy;
+
+option cc_generic_services = true;
+
+service ResMan {
+
+    //op api
+    rpc EnterSafeMode(EnterSafeModeRequest) returns (EnterSafeModeResponse);
+    rpc LeaveSafeMode(LeaveSafeModeRequest) returns (LeaveSafeModeResponse);
+
+    rpc Status(StatusRequest) returns (StatusResponse);
+
+    //internal RPC 
+    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse);
+
+    //job man
+    rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
+    rpc UpdateJob(SubmitJobRequest) returns (UpdateJobResponse);
+    rpc RemoveJob(RemoveJobRequest) returns (RemoveJobResponse);
+   
+    //agent man
+    rpc AddAgent(AddAgentRequest) returns (AddAgentResponse);
+    rpc RemoveAgent(RemoveAgentRequest) returns (RemoveAgentResponse);
+    rpc OnlineAgent(OnlineAgentRequest) returns (OnlineAgentResponse);
+    rpc OfflineAgent(OfflineAgentRequest) returns (OfflineAgentResponse);
+    rpc ListAgents(ListAgentsRequest) returns (ListAgentsResponse);
+
+    //tag man
+    rpc CreateTag(CreateTagRequest) returns (CreateTagResponse);
+    rpc RemoveTag(RemoveTagRequest) returns (RemoveTagResponse);
+    rpc ListTags(ListTagsRequest) returns (ListTagsResponse);
+   
+    // tag <--> agent
+    rpc AddAgentToTag(AddAgentToTagRequest) returns (AddAgentToTagResponse);
+    rpc RemoveAgentFromTag(RemoveAgentFromTagRequest) returns (RemoveAgentFromTagResponse);
+    rpc ListAgentsByTag(ListAgentsByTagRequest) returns (ListAgentsByTagResponse);
+
+    // user man
+    rpc AddUser(AddUserRequest) returns (AddUserResponse);
+    rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+    rpc ShowUser(ShowUserRequest) returns (ShowUserResponse);
+    rpc GrantUser(GantUserReuquest) returns (GrantUserResponse);
+    rpc AssignQuota(AssignQuotaRequest) returns (AssignQuotaResponse);
+
+}
+

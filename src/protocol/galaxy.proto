@@ -1,0 +1,6 @@
+package baidu.galaxy;
+option cc_generic_services = true;
+
+message JobDescriptor {
+        
+}
