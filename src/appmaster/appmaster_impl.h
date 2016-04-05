@@ -13,9 +13,12 @@ namespace galaxy {
 class AppMasterImpl : public AppMaster {
 public:
 
-void KeepAlive(::google::protobuf::RpcController* controller,
-               const ::baidu::galaxy::KeepAliveRequest* request,
-               ::baidu::galaxy::KeepAliveResponse* response,
+AppMasterImpl();
+virtual ~AppMasterImpl();
+
+void AssignTask(::google::protobuf::RpcController* controller,
+               const ::baidu::galaxy::AssignTaskRequest* request,
+               ::baidu::galaxy::AssignTaskResponse* response,
                ::google::protobuf::Closure* done);
 
 void ListTasks(::google::protobuf::RpcController* controller,

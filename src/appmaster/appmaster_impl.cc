@@ -20,9 +20,9 @@ AppMasterImpl::~AppMasterImpl() {
 
 }
 
-void AppMasterImpl::KeepAlive(::google::protobuf::RpcController* controller,
-                              const ::baidu::galaxy::KeepAliveRequest* request,
-                              ::baidu::galaxy::KeepAliveResponse* response,
+void AppMasterImpl::AssignTask(::google::protobuf::RpcController* controller,
+                              const ::baidu::galaxy::AssignTaskRequest* request,
+                              ::baidu::galaxy::AssignTaskResponse* response,
                               ::google::protobuf::Closure* done) {
 
 }
@@ -34,7 +34,6 @@ void AppMasterImpl::ListTasks(::google::protobuf::RpcController* controller,
                               ::google::protobuf::Closure* done) {
 
 }
-
 
 void AppMasterImpl::StartTask(::google::protobuf::RpcController* controller,
                               const ::baidu::galaxy::StartTaskRequest* request,
