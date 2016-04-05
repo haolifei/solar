@@ -1,0 +1,17 @@
+import "galaxy.proto";
+package baidu.galaxy;
+
+option cc_generic_services = true;
+
+service AppMaster {
+    //for agent worker: report & task assignment
+    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse);
+
+    //for user
+    rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+    rpc StartTask(StartTaskRequest) returns (StartTaskReponse);
+    rpc StopTask(StopTaskRequest) returns (StopTaskResponse);
+    rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+    rpc ExecuteCmd(ExecuteCmdRequest) returns (ExecuteCmdResponse);
+ 
+}
