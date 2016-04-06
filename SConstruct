@@ -9,7 +9,7 @@ env_gen.Protoc(['src/protocol/appmaster.pb.h','src/protocol/appmaster.pb.cc'], '
 
 env = Environment(
         CPPPATH = ['.', 'thirdparty/boost_1_57_0/', './thirdparty/include', 'src/utils'] ,
-        LIBS = ['sofa-pbrpc', 'protobuf', 'snappy', 'gflags', 'glog', 'pthread', 'rt', 'z'],
+        LIBS = ['sofa-pbrpc', 'protobuf', 'snappy', 'gflags', 'glog', 'tcmalloc_minimal','pthread', 'z', 'rt'],
         LIBPATH = ['./thirdparty/lib'],
         CCFLAGS = '-g2 -Wall -Werror')
 
