@@ -7,6 +7,7 @@
 #include <sofa/pbrpc/pbrpc.h>
 #include <glog/logging.h>
 #include <gflags/gflags.h>
+#include "setting_utils.h"
 #include "appmaster_impl.h"
 
 DECLARE_string(appmaster_port);
@@ -18,6 +19,8 @@ static void SignalIntHandler(int /*sig*/){
 
 int main(int argc, char* argv[]) {
     google::ParseCommandLineFlags(&argc, &argv, true);
+    google::InitGoogleLogging(argv[0]);
+    baidu::galaxy::SetupLog("appmaster");
     baidu::galaxy::AppMasterImpl * appmaster = new baidu::galaxy::AppMasterImpl();
     sofa::pbrpc::RpcServerOptions options;
     sofa::pbrpc::RpcServer rpc_server(options);

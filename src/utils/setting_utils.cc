@@ -11,7 +11,9 @@ void SetupLog(const std::string& name) {
     if (!name.empty()) {
         program_name = name;
     }
-
+    if (FLAGS_log_dir.empty()){
+        FLAGS_log_dir = ".";
+    }
     std::string log_filename = FLAGS_log_dir + "/" + program_name + ".INFO.";
     std::string wf_filename = FLAGS_log_dir + "/" + program_name + ".WARNING.";
     google::SetLogDestination(google::INFO, log_filename.c_str());
