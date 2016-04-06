@@ -39,33 +39,51 @@ message Grant {
 ///////////////////////////////////////////
 ///// resource
 ///////////////////////////////////////////
-message CpuResource {
+message CpuRequired {
     optional int64 milli_core = 1;
     optional bool excess = 2;
 }
 
-message MemoryResource {
+message MemoryRequired {
     optional int64 size = 1;
     optional bool excess = 2;
 }
 
-message PortResource {
+message PortRequired {
     optional uint32 port_size = 1;
     optional uint32 start_port = 2;
 }
 
-enum StorageType {
+enum VolumType {
     KSsd = 1;
     KDisk = 2;
     KBfs = 3;
     KTmpfs = 4;
 }
 
-message VolumResource {
+message VolumRequired {
     optional int64 size = 1;
-    optional StorageType type = 2;
+    optional VolumType type = 2;
     optional string source_path = 3;
     optional string dist_path = 4;
+}
+
+message CpuResource {
+    optional int64 milli_core = 1;
+}
+
+message MemoryResource {
+    optional int64 size = 1;
+}
+
+message Volum {
+    optional string path = 1;
+    optional int64 size = 2;
+    optional VolumType type = 3;
+}
+
+message VolumResource {
+    repeated Volum volums = 1;
 }
 
 
@@ -109,11 +127,10 @@ message Service {
 message TaskDescrition {
     optional uint32 id = 1;
 
-    optional CpuResource cpu = 7;
-    optional MemoryResource memory = 8;
-    repeated VolumResource volums = 9;
-    optional PortResource ports = 10;
-
+    optional CpuRequired cpu = 7;
+    optional MemoryRequired memory = 8;
+    repeated VolumRequired volums = 9;
+    optional PortRequired ports = 10;
 }
 
 message JobDescription {
@@ -128,10 +145,10 @@ message JobDescription {
     optional DataPackage data_package = 6;
 
     // Resource
-    optional CpuResource cpu = 7;
-    optional MemoryResource memory = 8;
-    repeated VolumResource volums = 9;
-    optional PortResource ports = 10;
+    optional CpuRequired cpu = 7;
+    optional MemoryRequired memory = 8;
+    repeated VolumRequired volums = 9;
+    optional PortRequired ports = 10;
 
     // service
     repeated Service services = 11;
@@ -160,8 +177,6 @@ message ContainerInfo {
     optional int64 cpu_used = 3;
     optional int64 memory_used = 4;
 }
-
-
 
 ///////////////////////////////////////
 ////status
