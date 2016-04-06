@@ -1,7 +1,32 @@
-import "galaxy.proto"
+import "galaxy.proto";
 package baidu.galaxy;
 
 option cc_generic_services = true;
+
+message CreateContainerRequest {
+
+}
+message CreateContainerResponse {
+
+}
+message RemoveContainerRequest {
+
+}
+message RemoveContainerResponse {
+
+}
+message ListContainersRequest {
+
+}
+message ListContainersResponse {
+
+}
+message QueryRequest {
+
+}
+message QueryResponse {
+
+}
 
 service Agent {
     rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);

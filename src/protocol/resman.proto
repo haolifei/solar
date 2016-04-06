@@ -1,7 +1,152 @@
-import "galaxy.proto"
+import "galaxy.proto";
 package baidu.galaxy;
 
 option cc_generic_services = true;
+
+message EnterSafeModeRequest {
+
+}
+message EnterSafeModeResponse {
+
+}
+message LeaveSafeModeRequest {
+
+}
+message LeaveSafeModeResponse {
+
+}
+message StatusRequest {
+
+}
+message StatusResponse {
+
+}
+message KeepAliveRequest {
+
+}
+message KeepAliveResponse {
+
+}
+message SubmitJobRequest {
+
+}
+message SubmitJobResponse {
+
+}
+message UpdateJobRequest {
+
+}
+message UpdateJobResponse {
+
+}
+message RemoveJobRequest {
+
+}
+message RemoveJobResponse {
+
+}
+message AddAgentRequest {
+
+}
+message AddAgentResponse {
+
+}
+message RemoveAgentRequest {
+
+}
+message RemoveAgentResponse {
+
+}
+message OnlineAgentRequest {
+
+}
+message OnlineAgentResponse {
+
+}
+message OfflineAgentRequest {
+
+}
+message OfflineAgentResponse {
+
+}
+message ListAgentsRequest {
+
+}
+message ListAgentsResponse {
+
+}
+message CreateTagRequest {
+
+}
+message CreateTagResponse {
+
+}
+message RemoveTagRequest {
+
+}
+message RemoveTagResponse {
+
+}
+message ListTagsRequest {
+
+}
+message ListTagsResponse {
+
+}
+message AddAgentToTagRequest {
+
+}
+message AddAgentToTagResponse {
+
+}
+message RemoveAgentFromTagRequest {
+
+}
+message RemoveAgentFromTagResponse {
+
+}
+message ListAgentsByTagRequest {
+
+}
+message ListAgentsByTagResponse {
+
+}
+message AddUserRequest {
+
+}
+message AddUserResponse {
+
+}
+message RemoveUserRequest {
+
+}
+message RemoveUserResponse {
+
+}
+message ListUsersRequest {
+
+}
+message ListUsersResponse {
+
+}
+message ShowUserRequest {
+
+}
+message ShowUserResponse {
+
+}
+message GrantUserRequest {
+
+}
+message GrantUserResponse {
+
+}
+message AssignQuotaRequest {
+
+}
+message AssignQuotaResponse {
+
+}
 
 service ResMan {
 
@@ -16,7 +161,7 @@ service ResMan {
 
     //job man
     rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
-    rpc UpdateJob(SubmitJobRequest) returns (UpdateJobResponse);
+    rpc UpdateJob(UpdateJobRequest) returns (UpdateJobResponse);
     rpc RemoveJob(RemoveJobRequest) returns (RemoveJobResponse);
    
     //agent man
@@ -41,7 +186,7 @@ service ResMan {
     rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
     rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
     rpc ShowUser(ShowUserRequest) returns (ShowUserResponse);
-    rpc GrantUser(GantUserReuquest) returns (GrantUserResponse);
+    rpc GrantUser(GrantUserRequest) returns (GrantUserResponse);
     rpc AssignQuota(AssignQuotaRequest) returns (AssignQuotaResponse);
 
 }
