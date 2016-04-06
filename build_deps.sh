@@ -23,6 +23,7 @@ if [ ! -f "${FLAG_DIR}/boost_1_57_0" ] \
     tar zxf boost_1_57_0.tar.gz
     rm -rf ${DEPS_PREFIX}/boost_1_57_0
     mv boost_1_57_0 ${DEPS_PREFIX}
+    cd ${DEPS_PREFIX}/boost_1_57_0 && ./bjam --with-filesystem --link=static
     touch "${FLAG_DIR}/boost_1_57_0"
 fi
 
