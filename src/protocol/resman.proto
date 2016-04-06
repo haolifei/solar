@@ -21,6 +21,7 @@ message StatusRequest {
 message StatusResponse {
 
 }
+
 message KeepAliveRequest {
 
 }
@@ -190,4 +191,6 @@ service ResMan {
     rpc AssignQuota(AssignQuotaRequest) returns (AssignQuotaResponse);
 
 }
+
+
 
