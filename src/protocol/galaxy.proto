@@ -68,6 +68,10 @@ message VolumResource {
     optional string dist_path = 4;
 }
 
+
+/////////////////////////////////////////
+///// Job
+/////////////////////////////////////////
 enum JobType {
     kBatch = 1;
     kService = 2;
@@ -102,25 +106,84 @@ message Service {
     optional bool use_bns = 3;
 }
 
-message Job {
-    // Job
-    optional string name = 1;
-    optional uint32 replica = 2;
-    optional JobType type = 3;
+message TaskDescrition {
+    optional uint32 id = 1;
 
-    // package
-    optional ExePackage exe_package = 4;
-    optional DataPackage data_package = 5;
+    optional CpuResource cpu = 7;
+    optional MemoryResource memory = 8;
+    repeated VolumResource volums = 9;
+    optional PortResource ports = 10;
 
-    // Resource
-    optional CpuResource cpu = 6;
-    optional MemoryResource memory = 7;
-    repeated VolumResource volums = 8;
-    optional PortResource ports = 9;
-
-    // service
-    repeated Service services = 10;
-
-    // task, donot support now
 }
 
+message JobDescription {
+    // Job
+    optional string name = 1;
+    optional JobType type = 2;
+    optional uint32 replica = 3;
+    optional uint32 max_per_host = 4;
+
+    // package
+    optional ExePackage exe_package = 5;
+    optional DataPackage data_package = 6;
+
+    // Resource
+    optional CpuResource cpu = 7;
+    optional MemoryResource memory = 8;
+    repeated VolumResource volums = 9;
+    optional PortResource ports = 10;
+
+    // service
+    repeated Service services = 11;
+}
+
+
+///////////////////////////////////////
+////container
+///////////////////////////////////////
+message ContainerId {
+    optional string id = 1;
+    optional string user = 2;
+}
+
+message ContainerDescription {
+    optional ContainerId id = 1;
+    optional CpuResource cpu = 2;
+    optional MemoryResource memory = 3;
+    optional VolumResource volum = 4;
+    optional string cmd_line = 5; // appmaster or appwork
+}
+
+message ContainerInfo {
+    optional ContainerId id = 1; 
+    optional int64 create_path = 2;
+    optional int64 cpu_used = 3;
+    optional int64 memory_used = 4;
+}
+
+
+
+///////////////////////////////////////
+////status
+///////////////////////////////////////
+enum Status {
+   kOk = 1; 
+}
+
+message ErrorCode {
+    optional Status status = 1;
+    optional string reason = 2;
+}
+
+message AgentInfo {
+    // agent version
+
+    // host healthy
+
+    // container
+    repeated ContainerInfo container_info = 1;
+
+    // resource
+
+    // exception statistics
+}
