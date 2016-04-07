@@ -48,12 +48,12 @@ Galaxy3.0是对Galaxy2.0的重构，主要解决以下问题：
 用户提交的Job内容主要是两部分：资源需求 +　程序启停  
 1. 一个Job提交后，就持久化到Nexus中。 ResMan只关心资源需求部分，ResMan命令有资源的Agent创建容器: 1个Master容器 + N个Worker容器；  
 2. Agent在Master容器启动AppMaster进程， Agent在Worker容器启动AppWorker进程； AppMaster进程把自己的地址记录在Nexus上；  
-3. AppWorker进程发RPC请求AppMaster进程， AppMaster分配任务给AppWorker执行， AppWorker反馈任务执行状态给AppMaster；（执行的任务包括：下载程序包、启动程序、停止程序、Load词典、更新程序版本等） 
+3. AppWorker进程发RPC请求AppMaster进程， AppMaster分配任务给AppWorker执行， AppWorker反馈任务执行状态给AppMaster；（执行的任务包括：下载程序包、启动程序、停止程序、Load词典、更新程序版本等）4. Master容器的调度需要在有特殊Tag的机器上，这样确保AppMaster的稳定性；
 
 ## 容错
 
 1. ResMan有备份，通过Nexus抢锁来Standby;  
-2. Agent跟踪每个容器的状态汇报给ResMan，当容器个数不够或者不符合ResMan的要求是，就需要调度：创建或删除容器；  
+2. Agent跟踪每个容器的状态汇报给ResMan，当容器个数不够或者不符合ResMan的要求时，就需要调度：创建或删除容器；  
 3. AppWorker负责跟踪用户程序的状态，当用户程序coredump、异常退出或者被cgroup kill后，反馈状态给AppMaster，AppMaster根据指定策略命令AppWorker是否再次拉起。 
 4. AppMaster如果异常挂掉，或者所在机器挂掉，ResMan会销毁此容器，并且在其他Agent上创建一个Master容器；  
 
