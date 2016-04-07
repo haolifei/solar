@@ -54,7 +54,7 @@ Galaxy3.0是对Galaxy2.0的重构，主要解决以下问题：
 
 1. ResMan有备份，通过Nexus抢锁来Standby;  
 2. Agent跟踪每个容器的状态汇报给ResMan，当容器个数不够或者不符合ResMan的要求时，就需要调度：创建或删除容器；  
-3. AppWorker负责跟踪用户程序的状态，当用户程序coredump、异常退出或者被cgroup kill后，反馈状态给AppMaster，AppMaster根据指定策略命令AppWorker是否再次拉起。 
+3. AppWorker负责跟踪用户程序的状态，当用户程序coredump、异常退出或者被cgroup kill后，反馈状态给AppMaster，AppMaster根据指定策略命令AppWorker是否再次拉起。  
 4. AppMaster如果异常挂掉，或者所在机器挂掉，ResMan会销毁此容器，并且在其他Agent上创建一个Master容器；  
 
 ## 服务发现
