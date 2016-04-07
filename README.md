@@ -37,8 +37,8 @@ Galaxy3.0是对Galaxy2.0的重构，主要解决以下问题：
                                                       Job_B1          Job_B2
 上面的图有点抽象，可以举一个不太恰当的例子。
 
-> Galaxy就是一个五星级酒店，每天都有大量游客组团入住。  
-> ResMan就是大堂经理，负责按照每个团的人数、房间需求来分配房间；  
+> Galaxy就是一个五星级酒店，每天都有大量游客组团入住和离开。  
+> ResMan就是大堂经理，负责按照每个团的人数、房间需求来分配房间，以及记账结账；  
 > Agent就是酒店服务员，确保房间就绪，以及游客离开后打扫等；  
 > AppMaster是旅游团团长，确保每个游客不掉队，以及组织一些集体活动；  
 > AppWorker就是小导游，负责把游客引导到房间，并且跟进游客的状态，汇报给团长；  
@@ -48,7 +48,8 @@ Galaxy3.0是对Galaxy2.0的重构，主要解决以下问题：
 用户提交的Job内容主要是两部分：资源需求 +　程序启停  
 1. 一个Job提交后，就持久化到Nexus中。 ResMan只关心资源需求部分，ResMan命令有资源的Agent创建容器: 1个Master容器 + N个Worker容器；  
 2. Agent在Master容器启动AppMaster进程， Agent在Worker容器启动AppWorker进程； AppMaster进程把自己的地址记录在Nexus上；  
-3. AppWorker进程发RPC请求AppMaster进程， AppMaster分配任务给AppWorker执行， AppWorker反馈任务执行状态给AppMaster；（执行的任务包括：下载程序包、启动程序、停止程序、Load词典、更新程序版本等）4. Master容器的调度需要在有特殊Tag的机器上，这样确保AppMaster的稳定性；
+3. Master容器的调度需要在有特殊Tag的机器上，这样确保AppMaster的稳定性；
+4. AppWorker进程发RPC请求AppMaster进程， AppMaster分配任务给AppWorker执行， AppWorker反馈任务执行状态给AppMaster；（执行的任务包括：下载程序包、启动程序、停止程序、Load词典、更新程序版本等）
 
 ## 容错
 
@@ -60,11 +61,13 @@ Galaxy3.0是对Galaxy2.0的重构，主要解决以下问题：
 ## 服务发现
 1. SDK通过Nexus发现指定的Job的AppMaster地址；  
 2. SDK请求AppMaster，发现每个Job实例的地址和当前的服务状态；  
+3. AppMaster会定时同步服务地址和状态到第三方Naming系统（如BNS,ZK等);  
 
 ## 服务更新
 1. SDK通过Nexus发现指定的Job的AppMaster地址；  
 2. SDK请求AppMaster, AppMaster将服务更新命令传播给AppWorker, AppWorker将更新状态反馈给AppMaster;  
 3. AppWorker和AppMaster的通信方式是Pull的方式，因此AppMaster可以根据当前的情况来决定部署的暂停和步长控制；  
+4. 服务的更新都在容器内进行，不涉及到容器的销毁和创建
 
 # 系统依赖
 1. Nexus作为寻址和元信息保存  
